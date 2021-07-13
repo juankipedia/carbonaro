@@ -1,0 +1,17 @@
+program ::= {statement}
+statement ::= "PRINT" (expression | string) nl
+            | "IF" comparison "THEN" nl {statement} "ENDIF" nl
+            | "WHILE" comparison "REPEAT" nl {statement} "ENDWHILE" nl
+            | "LABEL" ident nl
+            | "GOTO" ident nl
+            | "LET" ident "=" expression nl
+            | "INPUT" ident nl
+comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+expression ::= unary
+              |expression {("/" | "*") expression}
+              |expression {( "-" | "+" ) expression}
+              |(expression)
+unary ::= ["+" | "-"] primary
+primary ::= number | ident
+nl ::= '\n'+
+
