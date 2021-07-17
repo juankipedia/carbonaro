@@ -10,8 +10,9 @@ comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
 expression ::= unary
               |expression {("/" | "*") expression}
               |expression {( "-" | "+" ) expression}
+              |expression {("&&" | "||")} expression}
               |(expression)
-unary ::= ["+" | "-"] primary
+unary ::= ["+" | "-" | "!"] primary
 primary ::= number | ident
 nl ::= '\n'+
 

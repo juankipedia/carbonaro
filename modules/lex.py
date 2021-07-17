@@ -76,9 +76,24 @@ class Lexer:
                 lastChar = self.curChar
                 self.nextChar()
                 token = Token(lastChar + self.curChar, TokenType.NOTEQ)
+            elif self.peek() != '=':
+                token = Token(self.curChar, TokenType.NOT)
             else:
-                self.abort("Expected !=, got !" + self.peek())
-
+                self.abort(f"Expected != or '!' got {self.curChar}")
+        elif self.curChar == '&':
+            if self.peek() == '&':
+                lastChar = self.curChar
+                self.nextChar()
+                token = Token(lastChar + self.curChar, TokenType.AND)
+            else:
+                self.abort(f"Expected &&, got {self.curChar}")
+        elif self.curChar == '|':
+            if self.peek() == '|':
+                lastChar = self.curChar
+                self.nextChar()
+                token = Token(lastChar + self.curChar, TokenType.OR)
+            else:
+                self.abort(f"Expected ||, got {self.peek()}")
         elif self.curChar == '\"':
             # Get characters between quotations.
             self.nextChar()
@@ -198,3 +213,6 @@ class TokenType(enum.Enum):
     GTEQ = 211
     LEFTP = 212
     RIGHTP = 213
+    AND = 214
+    OR = 215
+    NOT = 216
