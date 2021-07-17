@@ -1,10 +1,12 @@
-import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-from modules import emit
-from modules import lex
-from modules import parse
+sys.path.insert(0,parentdir) 
+from modules.emit import *
+from modules.lex import *
+from modules.parse import *
+import sys
+ 
 
 class Testing():
 
@@ -32,9 +34,8 @@ class Testing():
         with open('out_1.txt', 'rb') as f:
             file_1 = f.read()
         
-        with open('./out-correct/out_correct1.txt', 'rb') as f:
+        with open('./out_correct/out_correct_1.txt', 'rb') as f:
             file_2 = f.read()
-
         assert file_1 == file_2, "Doesnt Match"
     def test2(self):
         pass
