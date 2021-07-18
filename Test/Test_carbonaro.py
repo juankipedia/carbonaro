@@ -13,35 +13,72 @@ class Testing():
     def __init__(self):
         self.test_()
 
-        #self.tes2()
+        self.test_2()
+
+        self.test_3()
 
 
     def test_(self):
 
-        if len(sys.argv) != 2:
-            sys.exit("Error: Compiler needs source file as argument.")
-        with open(sys.argv[1], 'r') as inputFile:
+        with open('./examples/example.carb', 'r') as inputFile:
             input = inputFile.read()
 
-        # Initialize the lexer, emitter, and parser.
         lexer = Lexer(input)
         emitter = Emitter("out_1.txt")
         parser = Parser(lexer, emitter)
 
-        parser.program() # Start the parser.
-        emitter.writeFile() # Write the output to file.
+        parser.program() 
+        emitter.writeFile() 
 
         with open('out_1.txt', 'rb') as f:
             file_1 = f.read()
         
         with open('./out_correct/out_correct_1.txt', 'rb') as f:
             file_2 = f.read()
-        assert file_1 == file_2, "Doesnt Match"
-    def test2(self):
-        pass
+        assert file_1 == file_2, "Failure in test 1"
+        print('Passed test number 1 successfully')
+
+    def test_2(self):
+        with open('./examples/example2.carb', 'r') as inputFile:
+            input = inputFile.read()
+
+        lexer = Lexer(input)
+        emitter = Emitter("out_1.txt")
+        parser = Parser(lexer, emitter)
+
+        parser.program() 
+        emitter.writeFile() 
+
+        with open('out_1.txt', 'rb') as f:
+            file_1 = f.read()
+        
+        with open('./out_correct/out_correct_2.txt', 'rb') as f:
+            file_2 = f.read()
+        assert file_1 == file_2, "Failure in test 2"
+        print('Passed test number 2 successfully')
+
+
+    def test_3(self):
+        with open('./examples/example3.carb', 'r') as inputFile:
+            input = inputFile.read()
+
+        lexer = Lexer(input)
+        emitter = Emitter("out_1.txt")
+        parser = Parser(lexer, emitter)
+
+        parser.program() 
+        emitter.writeFile() 
+
+        with open('out_1.txt', 'rb') as f:
+            file_1 = f.read()
+        
+        with open('./out_correct/out_correct_3.txt', 'rb') as f:
+            file_2 = f.read()
+        assert file_1 == file_2, "Failure in test 2"
+        print('Passed test number 3 successfully')    
 
 
 
 if __name__ == '__main__':
     Testing()
-    print('All good.')
+    print('Passed all tests successfully')
