@@ -8,8 +8,8 @@ function comp {
 	if [ $? -ne 0 ]; then
 		echo "${TTOUTPUT}"
 	else
-		mv out.c ${BN}.c
-		CCOUTPUT=$(${CC} -o ${BN} ${BN}.c)
+		mv out.c output/${BN}.c
+		CCOUTPUT=$(${CC} -o output/${BN} output/${BN}.c)
 		if [ $? -ne 0 ]; then
 			echo "${CCOUTPUT}"
 		else
