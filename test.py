@@ -31,6 +31,10 @@ class TestCarbonaro(unittest.TestCase):
             compile(carb_code, './tests/{dir}/out.c'.format(dir=dir_name))
 
             generated_c_code = prettify_and_read('./tests/{dir}/out.c'.format(dir=dir_name))
+
+            # remove out.c
+            os.remove('./tests/{dir}/out.c'.format(dir=dir_name))
+
             self.assertEqual(generated_c_code, expected_c_code, "carb code and c code are not equal, makes sense")
 
 if __name__ == '__main__':
