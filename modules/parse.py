@@ -208,6 +208,7 @@ class Parser:
             expression ::= unary
                            |expression {("/" | "*") expression}
                            |expression {( "-" | "+" ) expression}
+                           |expression {("&&" | "||")} expression}
                            |(expression)
     """
     def expression(self):
@@ -225,18 +226,22 @@ class Parser:
 
         # Can have 0 or more +/- and expressions.
         while self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS) or \
-              self.checkToken(TokenType.ASTERISK) or self.checkToken(TokenType.SLASH):
+              self.checkToken(TokenType.ASTERISK) or self.checkToken(TokenType.SLASH) or \
+              self.checkToken(TokenType.AND) or self.checkToken(TokenType.OR):
             self.emitter.emit(self.curToken.text)
             self.nextToken()
             self.expression()
 
 
-    """unary ::= ["+" | "-"] primary"""
+    """unary ::= ["+" | "-" | "!"] primary"""
     def unary(self):
         # Optional unary +/-
         if self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
             self.emitter.emit(self.curToken.text)
-            self.nextToken()        
+            self.nextToken()
+        elif self.checkToken(TokenType.NOT):
+            self.emitter.emit(self.curToken.text)
+            self.nextToken()
         self.primary()
 
 
