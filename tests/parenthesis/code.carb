@@ -1,0 +1,5 @@
+LET s = (8 + 4) * 5
+
+LET b = 3 + s
+
+PRINT b
