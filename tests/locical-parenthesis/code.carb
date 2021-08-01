@@ -1,4 +1,4 @@
 LET a = 0
 LET b = 1
-LET c = (((a && b) || a) && b)
-LET d = (a && b)  || (c && d)
+LET c = ((!(a && b) || !a) && b)
+LET d = (a && b)  || !(c && d)

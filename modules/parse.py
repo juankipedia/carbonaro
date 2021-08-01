@@ -221,6 +221,10 @@ class Parser:
                 self.nextToken()
             else:
                 self.abort("Unbalanced parenthesis expression")
+        elif self.checkToken(TokenType.NOT):
+            self.emitter.emit(self.curToken.text)
+            self.nextToken()
+            self.expression()
         else:
             self.unary()
 

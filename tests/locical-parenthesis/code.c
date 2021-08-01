@@ -7,7 +7,7 @@ int main(void)
     float d;
     a = 0;
     b = 1;
-    c = (((a && b) || a) && b);
-    d = (a && b) || (c && d);
+    c = ((!(a && b) || !a) && b);
+    d = (a && b) || !(c && d);
     return 0;
 }
