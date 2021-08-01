@@ -5,7 +5,20 @@ from carbonaro import compile
 # saves the list of directory names under tets/
 directories = next(os.walk('tests'))[1]
 
+def remove_empty_chunks_from_code(file_path):
+    file = open(file_path, "r+")
+    text = file.read()
+
+    text = text.replace('\n\n', '')
+
+    file.seek(0, os.SEEK_SET)
+    file.write(text)
+    file.close()
+
+
 def prettify_and_read(file_path):
+    remove_empty_chunks_from_code(file_path)
+
     os.system('clang-format -i -style=Microsoft {file_path}'.format(file_path=file_path))
 
     file = open(file_path)
