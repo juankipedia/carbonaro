@@ -1,0 +1,7 @@
+LET a = 0
+LET b = 1
+LET c = a || b
+LET d = a && b
+LET e = !a
+LET f = !b
+LET g = !d

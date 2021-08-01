@@ -35,7 +35,7 @@ class TestCarbonaro(unittest.TestCase):
             # remove out.c
             os.remove('./tests/{dir}/out.c'.format(dir=dir_name))
 
-            self.assertEqual(generated_c_code, expected_c_code, "carb code and c code are not equal, makes sense")
+            self.assertEqual(generated_c_code, expected_c_code, "`{dir}` test failed".format(dir=dir_name))
 
 if __name__ == '__main__':
     unittest.main()
