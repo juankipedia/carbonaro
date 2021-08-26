@@ -16,8 +16,6 @@ def compile(source_code, output_name):
     return emitter.code
 
 if __name__ == '__main__':
-    print("Teeny Tiny Compiler")
-
     if len(sys.argv) != 2:
         sys.exit("Error: Compiler needs source file as argument.")
     with open(sys.argv[1], 'r') as inputFile:
